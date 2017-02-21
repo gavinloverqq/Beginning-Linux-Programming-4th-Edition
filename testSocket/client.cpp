@@ -11,13 +11,16 @@ int main() {
     struct sockaddr_un address;
     int result;
     char ch = 'A';
-    
+
+//    创建了一个套接字
     sockfd = socket(AF_UNIX,SOCK_STREAM,0);
-    
+
+//    根据服务器的情况给套接字命名
     address.sun_family = AF_UNIX;
     strcpy(address.sun_path,"server_socket");
     len = sizeof(address);
-    
+
+//    将我们的套接字链接到服务器上
     result = connect(sockfd,(struct sockaddr *)&address,len);
     
     if(result == -1){
