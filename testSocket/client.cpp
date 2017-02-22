@@ -20,14 +20,15 @@ int main() {
     strcpy(address.sun_path,"server_socket");
     len = sizeof(address);
 
-//    将我们的套接字链接到服务器上
+//    将我们的套接字链接到服务器的套接字
     result = connect(sockfd,(struct sockaddr *)&address,len);
     
     if(result == -1){
         perror("oops:client1");
         exit(1);
     }
-    
+
+//    通过sockfd进行读写
     write(sockfd,&ch,1);
     read(sockfd,&ch,1);
     printf("char from server = %c\n",ch);
